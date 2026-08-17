@@ -118,29 +118,55 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r} (G3)")
 
 
-async def send_email(*, to: list, subject: str, html: str, reply_to: str | None = None) -> str | None:
-    _assert_safe_email(subject, html)
-    payload = {"to": to, "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
-    if reply_to:
-        payload["contact_email"] = reply_to
+async def send_email(
+    *,
+    to: list,
+    subject: str,
+    html: str,
+    reply_to: str | None = None
+) -> str | None:
+
     try:
+        # Validate email HTML inside try block
+        _assert_safe_email(subject, html)
+
+        payload = {
+            "to": to,
+            "subject": subject,
+            "html": html,
+            "from_name": EMAIL_FROM_NAME,
+        }
+
+        if reply_to:
+            payload["contact_email"] = reply_to
+
         async with httpx.AsyncClient(timeout=30) as client:
             resp = await client.post(
                 f"{EMAIL_BASE_URL}/api/v1/email/send",
                 headers={"X-Email-Key": EMAIL_KEY},
                 json=payload,
             )
-        resp.raise_for_status()
-        return resp.json().get("id")
-    except httpx.HTTPStatusError as e:
-        logger.error(f"Email send failed: {e.response.status_code} {e.response.text}")
-        raise HTTPException(status_code=502, detail="Failed to send enquiry email")
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Email send error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to send enquiry email")
 
+        resp.raise_for_status()
+
+        return resp.json().get("id")
+
+    except httpx.HTTPStatusError as e:
+        logger.error(
+            f"Email API failed: {e.response.status_code} "
+            f"{e.response.text}"
+        )
+        raise HTTPException(
+            status_code=502,
+            detail="Failed to send enquiry email"
+        )
+
+    except Exception as e:
+        logger.exception(f"Email send failed: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to send enquiry email"
+        )
 
 def _enquiry_email_html(e: "Enquiry") -> str:
     def row(label: str, value: str) -> str:
@@ -183,17 +209,51 @@ async def root():
 
 @api_router.post("/enquiries", status_code=201)
 async def create_enquiry(input: EnquiryCreate):
-    enquiry = Enquiry(**input.model_dump())
-    await db.enquiries.insert_one(enquiry.model_dump())
-    recipients = [CONTACT_EMAIL] + ([CONTACT_EMAIL_CC] if CONTACT_EMAIL_CC else [])
-    email_id = await send_email(
-        to=recipients,
-        subject="New Project Enquiry — NexBuild Tech & Services",
-        html=_enquiry_email_html(enquiry),
-        reply_to=enquiry.email,
-    )
-    return {"success": True, "message": "Enquiry sent successfully. Our team will contact you soon.", "id": enquiry.id, "email_id": email_id}
+    try:
+        enquiry = Enquiry(**input.model_dump())
 
+        # Save enquiry to MongoDB
+        await db.enquiries.insert_one(enquiry.model_dump())
+
+        logger.info(
+            f"Enquiry saved successfully: {enquiry.id}"
+        )
+
+        recipients = [CONTACT_EMAIL]
+
+        if CONTACT_EMAIL_CC:
+            recipients.append(CONTACT_EMAIL_CC)
+
+        email_id = await send_email(
+            to=recipients,
+            subject="New Project Enquiry — NexBuild Tech & Services",
+            html=_enquiry_email_html(enquiry),
+            reply_to=enquiry.email,
+        )
+
+        logger.info(
+            f"Enquiry email sent successfully: {email_id}"
+        )
+
+        return {
+            "success": True,
+            "message": "Enquiry sent successfully. Our team will contact you soon.",
+            "id": enquiry.id,
+            "email_id": email_id,
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        logger.exception(
+            f"CREATE ENQUIRY FAILED: {e}"
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to process enquiry"
+        )
 
 @api_router.get("/enquiries")
 async def list_enquiries():

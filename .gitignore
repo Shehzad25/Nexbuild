@@ -19,3 +19,6 @@ credentials.json
 *.key
 .credentials
 archive.zip
+
+.env
+*.env
