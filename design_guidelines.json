@@ -1,0 +1,165 @@
+{
+  "theme": "Light, clean, premium digital agency",
+  "typography": {
+    "headings": {
+      "fontFamily": "'Outfit', sans-serif",
+      "weights": ["500", "600", "700", "800"],
+      "tracking": "tracking-tight",
+      "usage": "Use for all headlines (H1-H6). Scale fluidly but cap H1 at text-5xl or text-6xl."
+    },
+    "body": {
+      "fontFamily": "'Manrope', sans-serif",
+      "weights": ["400", "500", "600"],
+      "tracking": "tracking-normal",
+      "usage": "Use for body text, paragraphs, labels, and small text. Generous line height (leading-relaxed)."
+    }
+  },
+  "colors": {
+    "primary": "#1D6FF2",
+    "primaryHover": "#165CD6",
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#F8FAFC",
+    "backgroundTertiary": "#F0F6FF",
+    "textMain": "#0F172A",
+    "textMuted": "#475569",
+    "accentCyan": "#06B6D4",
+    "border": "#E2E8F0"
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "card": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "cardHover": "shadow-[0_20px_40px_rgb(29,111,242,0.08)]",
+      "glowBlue": "drop-shadow-[0_0_15px_rgba(29,111,242,0.3)]"
+    },
+    "borders": {
+      "radius": "rounded-2xl",
+      "button": "rounded-full",
+      "style": "border border-slate-100"
+    },
+    "glassmorphism": {
+      "header": "backdrop-blur-xl bg-white/80 border-b border-slate-100/50",
+      "floatingCard": "backdrop-blur-md bg-white/90 border border-white/20 shadow-xl"
+    },
+    "gradients": {
+      "subtleBackground": "bg-gradient-to-br from-[#F0F6FF] via-white to-[#F8FAFC]",
+      "textAccent": "bg-clip-text text-transparent bg-gradient-to-r from-[#1D6FF2] to-[#06B6D4]"
+    }
+  },
+  "grids_layouts": {
+    "spacing": {
+      "sectionPadding": "py-24 md:py-32",
+      "container": "max-w-7xl mx-auto px-6 md:px-12",
+      "gap": "gap-8 md:gap-12"
+    },
+    "patterns": {
+      "hero": "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center",
+      "bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "services": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6",
+      "solutions": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+    }
+  },
+  "motion_interactions": {
+    "framerMotion": {
+      "fadeUp": "initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}",
+      "stagger": "staggerChildren: 0.1",
+      "float": "animate={{ y: [-10, 10, -10] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}"
+    },
+    "hover": {
+      "card": "transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(29,111,242,0.08)]",
+      "button": "transition-colors duration-200"
+    }
+  },
+  "components": {
+    "navbar": "Sticky, transparent to glassmorphism on scroll, compacts padding. Desktop links visible, mobile hamburger menu.",
+    "buttons": "Primary: bg-[#1D6FF2] text-white hover:bg-[#165CD6] rounded-full px-8 py-3. Secondary: bg-white text-[#0F172A] border border-slate-200 hover:border-[#1D6FF2] hover:text-[#1D6FF2] rounded-full px-8 py-3.",
+    "cards": "White background, rounded-2xl, p-8, subtle border, smooth hover lift.",
+    "badges": "Small pill-shaped text above headings. bg-blue-50 text-[#1D6FF2] px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase.",
+    "inputs": "Shadcn/UI inputs customized: rounded-xl, border-slate-200, focus:ring-2 focus:ring-[#1D6FF2]/20 focus:border-[#1D6FF2]."
+  },
+  "images": {
+    "heroMockup": {
+      "url": "https://images.unsplash.com/photo-1544237526-cae15a57ed1e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxsYXB0b3AlMjBzbWFydHBob25lJTIwZGVzayUyMG1vY2t1cHxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "hero",
+      "description": "Laptop and smartphone mockup for hero section devices"
+    },
+    "aboutTeam": {
+      "url": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjB0ZWNoJTIwdGVhbSUyMGNvbGxhYm9yYXRpbmd8ZW58MHx8fHwxNzg2NzgzNTAyfDA&ixlib=rb-4.1.0&q=85",
+      "category": "about",
+      "description": "Modern tech team collaborating in office"
+    },
+    "aiNetwork": {
+      "url": "https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGJsdWUlMjBkaWdpdGFsJTIwbmV0d29ya3xlbnwwfHx8fDE3ODMzMTkwODV8MA&ixlib=rb-4.1.0&q=85",
+      "category": "ai_automation",
+      "description": "Abstract blue digital network nodes for AI section"
+    },
+    "portfolio_1": {
+      "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjB1aSUyMGRlc2lnbnxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "portfolio",
+      "description": "Dashboard analytics UI"
+    },
+    "portfolio_2": {
+      "url": "https://images.pexels.com/photos/3850263/pexels-photo-3850263.jpeg",
+      "category": "portfolio",
+      "description": "Mobile app interface on smartphone"
+    },
+    "portfolio_3": {
+      "url": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwyfHxkYXNoYm9hcmQlMjB1aSUyMGRlc2lnbnxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "portfolio",
+      "description": "SaaS Platform dashboard"
+    },
+    "portfolio_4": {
+      "url": "https://images.pexels.com/photos/7151031/pexels-photo-7151031.jpeg",
+      "category": "portfolio",
+      "description": "Colorful app icons UI"
+    },
+    "teamMember_1": {
+      "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "team_contact",
+      "description": "Team member 1 portrait"
+    },
+    "teamMember_2": {
+      "url": "https://images.unsplash.com/photo-1627161683077-e34782c24d81?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "team_contact",
+      "description": "Team member 2 portrait"
+    },
+    "teamMember_3": {
+      "url": "https://images.unsplash.com/photo-1629425733761-caae3b5f2e50?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "team_contact",
+      "description": "Team member 3 portrait"
+    },
+    "testimonial_1": {
+      "url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3ODY3ODM1MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "testimonials",
+      "description": "Testimonial author 1"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, lucide-react (if not installed), react-icons, @heroicons/react, react-countup.",
+    "Import Outfit and Manrope fonts from Google Fonts in index.css: `@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');` and configure in tailwind.config.js.",
+    "Build a single-page marketing site structure with distinct section components in src/components/",
+    "Create a sticky navigation bar that changes state on scroll (adds glassmorphism, compacts padding). Use uploaded NexBuild logo.",
+    "For the Hero Section: Include floating/animated Framer Motion cards (e.g. 'Web Development', 'AI Solutions') around the main mockup image.",
+    "Implement an animated stat counter in the Trust Strip (e.g. using react-countup or framer-motion useInView + useEffect).",
+    "Services & Solutions Grid: Use raw Tailwind HTML, focus on generous whitespace and smooth hover interaction (icon scale up, subtle background tint).",
+    "Portfolio: Add a simple state-based filter for the tabs (All | Websites | Apps | AI | Branding) with Framer Motion AnimatePresence.",
+    "Process Timeline: Use a vertical dashed line with numbered nodes, highlight active node on scroll using Framer Motion.",
+    "Contact Form: Implement basic validation and show a success state/toast upon submission. Use Shadcn/UI Form primitives if convenient, or pure HTML+Tailwind.",
+    "Use light, clean, premium palette. Avoid overly dark sections. Use #1D6FF2 style blue as primary accent.",
+    "All interactive elements MUST include a `data-testid` attribute (e.g., `data-testid=\"contact-submit-btn\"`).",
+    "DO NOT use a fully transparent header over any content that scrolls. Use backdrop-blur-xl and a semi-transparent white background (bg-white/80)."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Make creative, distinctive frontends that surprise and delight.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition (e.g., transition: all). Add transitions for specific interactive elements.",
+    "You MUST NOT center align the app container (.App { text-align: center; } is forbidden).",
+    "Always use modern button styles like pill-shaped, or soft-rounded with interaction animations.",
+    "NEVER use AI assistant Emoji characters (🤖🧠💭💡) for icons. Use Lucide, HeroIcons, or Phosphor icons.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap. Avoid overcrowding.",
+    "Include subtle grain textures or noise if suitable, custom cursors, selection states, and loading animations.",
+    "All text over images/gradients must pass APCA/WCAG contrast checks.",
+    "For interactive logic, use Shadcn. For marketing layouts, use pure HTML + Tailwind to avoid rigid constraints.",
+    "Do not use generic gray backgrounds for the 'Premium' vibe - tint any gray with a hint of blue (e.g. slate-50)."
+  ]
+}
