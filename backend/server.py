@@ -17,6 +17,14 @@ from urllib.parse import urlparse
 from datetime import datetime, timezone
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+logger = logging.getLogger(__name__)
+
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -25,6 +33,28 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
+
+
+@app.get("/health")
+async def health():
+    try:
+        await client.admin.command("ping")
+
+        return {
+            "status": "ok",
+            "mongodb": "connected"
+        }
+
+    except Exception as e:
+        logger.exception(f"MongoDB connection failed: {e}")
+
+        return {
+            "status": "error",
+            "mongodb": "disconnected",
+            "error": str(e)
+        }
+
+
 api_router = APIRouter(prefix="/api")
 
 
